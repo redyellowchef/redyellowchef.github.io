@@ -1,20 +1,21 @@
-function Note(lane, y)
+function Note(lane, y, key)
 {
     this.lane = lane;
     this.x;
     this.y = y;
-    this.width = 60;
-    this.height = 60;
-    this.key;
+    this.width = 65;
+    this.height = 65;
+    this.key = key;
 
     this.start = function()
     {
-        this.x = canvas.clientWidth / 2 - xSpacing * 2 + xSpacing * (lane - 1);
+        this.x = canvas.clientWidth / 2 - xSpacing * 2 + xSpacing * (this.lane - 1);
+        this.y *= -ySpacing;
     }
 
     this.update = function()
     {
-        this.y += conductor.bpm / 60 * speed;
+        this.y += speed;
     }
 
     this.draw = function()

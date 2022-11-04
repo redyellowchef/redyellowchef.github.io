@@ -1,9 +1,9 @@
 var canvas;
 var context;
 
-var speed = 3;
+var speed = 8;
 var xSpacing = 85;
-var ySpacing = 85;
+var ySpacing = 170;
 var conductor;
 var keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'];
 var notes = [];
@@ -13,18 +13,10 @@ window.onload = function()
     canvas = document.getElementById("gameCanvas");
     context = canvas.getContext("2d");
 
-    conductor = new Conductor();
-
-    for (let i = 0; i < 5; i++)
+    for (let i = 0; i < TestMap.length; i++)
     {
-        var note = new Note(i + 1, -ySpacing * i);
-        note.key = keys[Math.floor(Math.random() * keys.length)];
-        notes.push(note);
-    }
-
-    for (let i = 0; i < notes.length; i++)
-    {
-        notes[i].start();
+        notes.push(TestMap[i]);
+        TestMap[i].start();
     }
 
     requestAnimationFrame(update);
@@ -51,4 +43,7 @@ function draw()
     {
         notes[i].draw();
     }
+
+    context.fillStyle = "#000000";
+    context.fillRect(0, canvas.clientHeight - 130, canvas.clientWidth, 2);
 }
